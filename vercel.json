@@ -1,0 +1,42 @@
+{
+  "name": "vibemod",
+  "version": 2,
+  "builds": [
+    {
+      "src": "web-interface/package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "unity-client/WebGL/Build/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/game",
+      "dest": "/unity-client/WebGL/Build/index.html"
+    },
+    {
+      "src": "/game/(.*)",
+      "dest": "/unity-client/WebGL/Build/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/web-interface/$1"
+    }
+  ],
+  "env": {
+    "PHOTON_APP_ID": "@photon_app_id",
+    "FIREBASE_API_KEY": "@firebase_api_key",
+    "FIREBASE_AUTH_DOMAIN": "@firebase_auth_domain",
+    "FIREBASE_PROJECT_ID": "@firebase_project_id",
+    "FIREBASE_STORAGE_BUCKET": "@firebase_storage_bucket",
+    "FIREBASE_MESSAGING_SENDER_ID": "@firebase_messaging_sender_id",
+    "FIREBASE_APP_ID": "@firebase_app_id",
+    "NEXT_PUBLIC_API_URL": "@next_public_api_url"
+  },
+  "github": {
+    "silent": true,
+    "autoJobCancelation": true
+  }
+} 
